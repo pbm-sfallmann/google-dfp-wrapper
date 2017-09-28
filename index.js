@@ -76,7 +76,7 @@ function GoogleDfpWrapperFactory() {
       null,
       scope
     )
-    console.log(networkCode)
+
     const dfpUser = new Dfp.User(networkCode, projectId, version);
     dfpUser.setClient(jwtClient);
     return new DfpClient(dfpUser);
