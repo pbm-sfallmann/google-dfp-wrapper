@@ -1,0 +1,13 @@
+{
+  "name": "google-dfp-wrapper",
+  "description": "A simple wrapper for node-google-dfp to simplify it's use",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Sean Fallmann",
+  "email": "sfallmann@pbmbrands.com",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "node-google-dfp": "^0.2.2"
+  }
+}
