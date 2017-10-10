@@ -42,12 +42,21 @@ function GoogleDfpWrapperFactory() {
     const makeRequest = (serviceName, methodName, args) => {
       return getService(serviceName)
         .then((_service) => {
+
+          if (args === null || args === undefined){
+            throw new Error('args is null or undefined');
+          }
           const _method = Promise.promisify(_service[methodName]);
-    
-          if (typeof args === 'string'){
-            return _method(new Dfp.Statement(args));
-          } else if (!args){
-            return _method(new Dfp.Statement(''));
+
+          switch(typeof args) {
+            case 'string': 
+              return _method(new Dfp.Statement(args));
+              break;
+            case 'object':
+              return _method(args);
+              break;
+            default: 
+              throw new Error('args formt unrecognized')
           }
     
           return _method(args);
@@ -86,6 +95,9 @@ function GoogleDfpWrapperFactory() {
     constructor(dfpUser){
       this.services = createServicesObj(dfpUser);
       this.Statement = Dfp.Statement;
+      this.Money = Dfp.Money;
+      this.DfpDate = Dfp.DfpDate;
+      this.assetByteArray = Dfp.assetByteArray;
     }
   }
 
